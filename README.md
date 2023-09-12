@@ -9,29 +9,29 @@ This project is a comprehensive exploration of image classification using CIFAR-
 * Resampled custom images to align with CIFAR data.
 * Ensured data quality and suitability for neural networks.
 
-## Data Analysis
+### Data Analysis
 * Conducted an in-depth analysis of the merged dataset.
 * Split the data into training, validation, and test sets for model development and evaluation.
 
-## Modeling with Pytorch
+### Modeling with Pytorch
 * Developed a custom neural network from the ground up.
 * Analyzed model training results, including convergence graphs, accuracy, and confusion matrices.
 
-## Out Of Distribution Data Handling
+### Out Of Distribution Data Handling
 * Demonstrated a deep understanding of the topic, experimenting with various methods to achieve 
   the desired results.
   
-## Inference and Evaluation
+### Inference and Evaluation
 * Evaluated model inference on test data.
 * Visualized correctly and incorrectly classified examples with probabilities.
 * Presented a confusion matrix to evaluate model performance.
   
-## GUI
+### GUI
 * Implemented a user-friendly Dash interface.
 * Enabled users to upload images from their devices or use their device cameras.
 * Allow user provide feedback about prediction (for monitoring model perfomance).
 
-## Development Environment
+### Development Environment
 * project developed using PyCharm.
 * Training model on Kaggle for powerfull GPU performance
 
