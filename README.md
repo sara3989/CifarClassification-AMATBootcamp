@@ -2,7 +2,7 @@
 ## Overview
 This project is a comprehensive exploration of image classification using CIFAR-10 and CIFAR-100 datasets. It encompasses the entire project lifecycle, from data preparation to constructing a custom CNN model and deploying it with monitoring capabilities. The project was undertaken within the framework of a boot camp hosted by Applied Materials.
 
-## Dataset Preparation 
+#### Dataset Preparation 
 * Downloaded the CIFAR-10 dataset.
 * Integrated labels from CIFAR-100 and a custom captured dataset.
 * Applied data augmentation techniques to balance the data.
