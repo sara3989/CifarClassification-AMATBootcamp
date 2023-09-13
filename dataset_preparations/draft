@@ -1,0 +1,58 @@
+ def get_super_class(self, label_name: str) -> (pd.DataFrame, int):
+        """
+        :param label_name: label name of desired class from CIFAR-100 dataset.
+        :return: DataFrame of the images of the desired label from CIFAR-100 dataset.
+        """
+        # Read labels names
+        df_labels_names = pd.read_csv(self.csv_label_names)
+
+        # Read CIFAR-100 dataset
+        df_cifar_100 = pd.read_csv(self.csv_dataset_path)
+
+        # Encoding label name
+        label = df_labels_names.index[df_labels_names['coarse_label_names'] == label_name].tolist()[0]
+
+        # Create a DataFrame of the label class
+        df = pd.DataFrame(df_cifar_100.loc[df_cifar_100['label'] == label])
+
+        return df, label
+
+    def get_super_classes(self, our_label_names: list, from_label: int) -> pd.DataFrame:
+        """
+        :param our_label_names: list of desired label names
+        :param from_label: first label to encoding the new class label.
+        :return: DataFrame contains the images of the desired labels from CIFAR-100 dataset.
+        """
+
+        # Read CIFAR-10 labels names
+        df_names = pd.read_csv(self.csv_names_path)
+
+        df_classes = pd.DataFrame()
+
+        # last label to encoding the new class label
+        to_label = from_label + len(our_label_names)
+
+        for label_name, label_index in zip(our_label_names, range(from_label, to_label)):
+
+            # df_class will contain images of the current label_name class
+            # label will contain the encoding origin label
+            df_class, label = self.get_super_class(label_name)
+
+            # replace CIFAR-100 origin label to a new proper label
+            df_class['label'] = df_class['label'].replace(label, label_index)
+
+            # store the new labels
+            df_new_label_name = pd.DataFrame([label_name], index=[label_index], columns=df_names.columns)
+            df_names = pd.concat([df_names, df_new_label_name])
+
+            # concatenate the current class to all classes
+            df_classes = pd.concat([df_classes, df_class])
+
+
+
+        # Assign self.csv_our_label_names_path
+        self.csv_our_label_names_path = os.path.join(self.cifar10.save_directory, self.csv_our_label_names)
+        df_names.to_csv(self.csv_our_label_names_path)
+
+        # return a single dataframe object of all required labels images from CIFAR-100
+        return df_classes
